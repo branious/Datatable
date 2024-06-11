@@ -16,17 +16,35 @@ import * as errors from "../../errors";
 import { Request } from "express";
 import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
+import * as nestAccessControl from "nest-access-control";
+import * as defaultAuthGuard from "../../auth/defaultAuth.guard";
 import { DataRowService } from "../dataRow.service";
+import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { DataRowCreateInput } from "./DataRowCreateInput";
 import { DataRow } from "./DataRow";
 import { DataRowFindManyArgs } from "./DataRowFindManyArgs";
 import { DataRowWhereUniqueInput } from "./DataRowWhereUniqueInput";
 import { DataRowUpdateInput } from "./DataRowUpdateInput";
 
+@swagger.ApiBearerAuth()
+@common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class DataRowControllerBase {
-  constructor(protected readonly service: DataRowService) {}
+  constructor(
+    protected readonly service: DataRowService,
+    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
+  ) {}
+  @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DataRow })
+  @nestAccessControl.UseRoles({
+    resource: "DataRow",
+    action: "create",
+    possession: "any",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async createDataRow(
     @common.Body() data: DataRowCreateInput
   ): Promise<DataRow> {
@@ -40,9 +58,18 @@ export class DataRowControllerBase {
     });
   }
 
+  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get()
   @swagger.ApiOkResponse({ type: [DataRow] })
   @ApiNestedQuery(DataRowFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "DataRow",
+    action: "read",
+    possession: "any",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async dataRows(@common.Req() request: Request): Promise<DataRow[]> {
     const args = plainToClass(DataRowFindManyArgs, request.query);
     return this.service.dataRows({
@@ -55,9 +82,18 @@ export class DataRowControllerBase {
     });
   }
 
+  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DataRow })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @nestAccessControl.UseRoles({
+    resource: "DataRow",
+    action: "read",
+    possession: "own",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async dataRow(
     @common.Param() params: DataRowWhereUniqueInput
   ): Promise<DataRow | null> {
@@ -77,9 +113,18 @@ export class DataRowControllerBase {
     return result;
   }
 
+  @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DataRow })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @nestAccessControl.UseRoles({
+    resource: "DataRow",
+    action: "update",
+    possession: "any",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async updateDataRow(
     @common.Param() params: DataRowWhereUniqueInput,
     @common.Body() data: DataRowUpdateInput
@@ -107,6 +152,14 @@ export class DataRowControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DataRow })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @nestAccessControl.UseRoles({
+    resource: "DataRow",
+    action: "delete",
+    possession: "any",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async deleteDataRow(
     @common.Param() params: DataRowWhereUniqueInput
   ): Promise<DataRow | null> {

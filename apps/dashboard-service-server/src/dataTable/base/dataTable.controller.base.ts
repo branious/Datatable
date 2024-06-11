@@ -16,17 +16,35 @@ import * as errors from "../../errors";
 import { Request } from "express";
 import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
+import * as nestAccessControl from "nest-access-control";
+import * as defaultAuthGuard from "../../auth/defaultAuth.guard";
 import { DataTableService } from "../dataTable.service";
+import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { DataTableCreateInput } from "./DataTableCreateInput";
 import { DataTable } from "./DataTable";
 import { DataTableFindManyArgs } from "./DataTableFindManyArgs";
 import { DataTableWhereUniqueInput } from "./DataTableWhereUniqueInput";
 import { DataTableUpdateInput } from "./DataTableUpdateInput";
 
+@swagger.ApiBearerAuth()
+@common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class DataTableControllerBase {
-  constructor(protected readonly service: DataTableService) {}
+  constructor(
+    protected readonly service: DataTableService,
+    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
+  ) {}
+  @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DataTable })
+  @nestAccessControl.UseRoles({
+    resource: "DataTable",
+    action: "create",
+    possession: "any",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async createDataTable(
     @common.Body() data: DataTableCreateInput
   ): Promise<DataTable> {
@@ -40,9 +58,18 @@ export class DataTableControllerBase {
     });
   }
 
+  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get()
   @swagger.ApiOkResponse({ type: [DataTable] })
   @ApiNestedQuery(DataTableFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "DataTable",
+    action: "read",
+    possession: "any",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async dataTables(@common.Req() request: Request): Promise<DataTable[]> {
     const args = plainToClass(DataTableFindManyArgs, request.query);
     return this.service.dataTables({
@@ -55,9 +82,18 @@ export class DataTableControllerBase {
     });
   }
 
+  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DataTable })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @nestAccessControl.UseRoles({
+    resource: "DataTable",
+    action: "read",
+    possession: "own",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async dataTable(
     @common.Param() params: DataTableWhereUniqueInput
   ): Promise<DataTable | null> {
@@ -77,9 +113,18 @@ export class DataTableControllerBase {
     return result;
   }
 
+  @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DataTable })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @nestAccessControl.UseRoles({
+    resource: "DataTable",
+    action: "update",
+    possession: "any",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async updateDataTable(
     @common.Param() params: DataTableWhereUniqueInput,
     @common.Body() data: DataTableUpdateInput
@@ -107,6 +152,14 @@ export class DataTableControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DataTable })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @nestAccessControl.UseRoles({
+    resource: "DataTable",
+    action: "delete",
+    possession: "any",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async deleteDataTable(
     @common.Param() params: DataTableWhereUniqueInput
   ): Promise<DataTable | null> {

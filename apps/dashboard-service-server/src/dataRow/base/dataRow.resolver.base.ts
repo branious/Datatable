@@ -13,16 +13,31 @@ import * as graphql from "@nestjs/graphql";
 import { GraphQLError } from "graphql";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
+import * as nestAccessControl from "nest-access-control";
+import * as gqlACGuard from "../../auth/gqlAC.guard";
+import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
+import * as common from "@nestjs/common";
+import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { DataRow } from "./DataRow";
 import { DataRowCountArgs } from "./DataRowCountArgs";
 import { DataRowFindManyArgs } from "./DataRowFindManyArgs";
 import { DataRowFindUniqueArgs } from "./DataRowFindUniqueArgs";
 import { DeleteDataRowArgs } from "./DeleteDataRowArgs";
 import { DataRowService } from "../dataRow.service";
+@common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => DataRow)
 export class DataRowResolverBase {
-  constructor(protected readonly service: DataRowService) {}
+  constructor(
+    protected readonly service: DataRowService,
+    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
+  ) {}
 
+  @graphql.Query(() => MetaQueryPayload)
+  @nestAccessControl.UseRoles({
+    resource: "DataRow",
+    action: "read",
+    possession: "any",
+  })
   async _dataRowsMeta(
     @graphql.Args() args: DataRowCountArgs
   ): Promise<MetaQueryPayload> {
@@ -32,14 +47,26 @@ export class DataRowResolverBase {
     };
   }
 
+  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.Query(() => [DataRow])
+  @nestAccessControl.UseRoles({
+    resource: "DataRow",
+    action: "read",
+    possession: "any",
+  })
   async dataRows(
     @graphql.Args() args: DataRowFindManyArgs
   ): Promise<DataRow[]> {
     return this.service.dataRows(args);
   }
 
+  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.Query(() => DataRow, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "DataRow",
+    action: "read",
+    possession: "own",
+  })
   async dataRow(
     @graphql.Args() args: DataRowFindUniqueArgs
   ): Promise<DataRow | null> {
@@ -51,6 +78,11 @@ export class DataRowResolverBase {
   }
 
   @graphql.Mutation(() => DataRow)
+  @nestAccessControl.UseRoles({
+    resource: "DataRow",
+    action: "delete",
+    possession: "any",
+  })
   async deleteDataRow(
     @graphql.Args() args: DeleteDataRowArgs
   ): Promise<DataRow | null> {

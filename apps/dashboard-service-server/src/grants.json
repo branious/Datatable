@@ -1,0 +1,812 @@
+[
+  {
+    "role": "admin",
+    "resource": "DataTable",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataTable",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataTable",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataTable",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataTable",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataTable",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataTable",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataTable",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataTable",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataTable",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataTable",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataTable",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataTable",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataTable",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataTable",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataRow",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataRow",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataRow",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataRow",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataRow",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataRow",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataRow",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataRow",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataRow",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataRow",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataRow",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataRow",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataRow",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataRow",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataRow",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataColumn",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataColumn",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataColumn",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataColumn",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataColumn",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataColumn",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataColumn",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataColumn",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataColumn",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataColumn",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataColumn",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataColumn",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "DataColumn",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "DataColumn",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "DataColumn",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Role",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "Role",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Role",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Role",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "Role",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Role",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Role",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "Role",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Role",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Role",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "Role",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Role",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Role",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "Role",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Role",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "User",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "User",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "User",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "User",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "User",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "User",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "User",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "User",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "User",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "User",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "User",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "User",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "User",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "User",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "User",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "UserData",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "UserData",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "UserData",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "UserData",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "UserData",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "UserData",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "UserData",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "UserData",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "UserData",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "UserData",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "UserData",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "UserData",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "UserData",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "UserData",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "UserData",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "EditorRole",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "EditorRole",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "EditorRole",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "EditorRole",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "EditorRole",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "EditorRole",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "EditorRole",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "EditorRole",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "EditorRole",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "EditorRole",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "EditorRole",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "EditorRole",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "EditorRole",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "EditorRole",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "EditorRole",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "UserRole",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "UserRole",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "UserRole",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "UserRole",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "UserRole",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "UserRole",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "UserRole",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "UserRole",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "UserRole",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "UserRole",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "UserRole",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "UserRole",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "UserRole",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "UserRole",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "UserRole",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "AdminRole",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "AdminRole",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "AdminRole",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "AdminRole",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "AdminRole",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "AdminRole",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "AdminRole",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "AdminRole",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "AdminRole",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "AdminRole",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "AdminRole",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "AdminRole",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "AdminRole",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "editor",
+    "resource": "AdminRole",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "AdminRole",
+    "action": "read:any",
+    "attributes": "*"
+  }
+]

@@ -16,17 +16,35 @@ import * as errors from "../../errors";
 import { Request } from "express";
 import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
+import * as nestAccessControl from "nest-access-control";
+import * as defaultAuthGuard from "../../auth/defaultAuth.guard";
 import { DataColumnService } from "../dataColumn.service";
+import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { DataColumnCreateInput } from "./DataColumnCreateInput";
 import { DataColumn } from "./DataColumn";
 import { DataColumnFindManyArgs } from "./DataColumnFindManyArgs";
 import { DataColumnWhereUniqueInput } from "./DataColumnWhereUniqueInput";
 import { DataColumnUpdateInput } from "./DataColumnUpdateInput";
 
+@swagger.ApiBearerAuth()
+@common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class DataColumnControllerBase {
-  constructor(protected readonly service: DataColumnService) {}
+  constructor(
+    protected readonly service: DataColumnService,
+    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
+  ) {}
+  @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Post()
   @swagger.ApiCreatedResponse({ type: DataColumn })
+  @nestAccessControl.UseRoles({
+    resource: "DataColumn",
+    action: "create",
+    possession: "any",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async createDataColumn(
     @common.Body() data: DataColumnCreateInput
   ): Promise<DataColumn> {
@@ -40,9 +58,18 @@ export class DataColumnControllerBase {
     });
   }
 
+  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get()
   @swagger.ApiOkResponse({ type: [DataColumn] })
   @ApiNestedQuery(DataColumnFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "DataColumn",
+    action: "read",
+    possession: "any",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async dataColumns(@common.Req() request: Request): Promise<DataColumn[]> {
     const args = plainToClass(DataColumnFindManyArgs, request.query);
     return this.service.dataColumns({
@@ -55,9 +82,18 @@ export class DataColumnControllerBase {
     });
   }
 
+  @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: DataColumn })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @nestAccessControl.UseRoles({
+    resource: "DataColumn",
+    action: "read",
+    possession: "own",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async dataColumn(
     @common.Param() params: DataColumnWhereUniqueInput
   ): Promise<DataColumn | null> {
@@ -77,9 +113,18 @@ export class DataColumnControllerBase {
     return result;
   }
 
+  @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: DataColumn })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @nestAccessControl.UseRoles({
+    resource: "DataColumn",
+    action: "update",
+    possession: "any",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async updateDataColumn(
     @common.Param() params: DataColumnWhereUniqueInput,
     @common.Body() data: DataColumnUpdateInput
@@ -107,6 +152,14 @@ export class DataColumnControllerBase {
   @common.Delete("/:id")
   @swagger.ApiOkResponse({ type: DataColumn })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @nestAccessControl.UseRoles({
+    resource: "DataColumn",
+    action: "delete",
+    possession: "any",
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
   async deleteDataColumn(
     @common.Param() params: DataColumnWhereUniqueInput
   ): Promise<DataColumn | null> {

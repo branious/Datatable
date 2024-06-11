@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   Edit,
   SimpleForm,
@@ -6,7 +7,10 @@ import {
   TextInput,
   PasswordInput,
   SelectArrayInput,
+  ReferenceArrayInput,
 } from "react-admin";
+
+import { UserDataTitle } from "../userData/UserDataTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserEdit = (props: EditProps): React.ReactElement => {
@@ -23,6 +27,14 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
+        <ReferenceArrayInput
+          source="userDataItems"
+          reference="UserData"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={UserDataTitle} />
+        </ReferenceArrayInput>
         <TextInput label="Username" source="username" />
       </SimpleForm>
     </Edit>
